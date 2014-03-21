@@ -46,28 +46,34 @@
   [self startKeyFrameAnimation];  
 }
 
+- (void)didReceiveMemoryWarning
+{
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+#pragma mark private functions
+
 -(void)startKeyFrameAnimation{
   CALayer *layer = [CALayer layer];
   [layer setPosition:CGPointMake(50.0, 50.0)];
-  [layer setBounds:CGRectMake(0.0, 0.0, 50.0, 60.0)];
-  [layer setBackgroundColor:[[UIColor blueColor] CGColor]];
+  [layer setBounds:CGRectMake(0.0, 0.0, 128.0, 128.0)];
+  [layer setBackgroundColor:[[UIColor colorWithPatternImage:[UIImage imageNamed:@"sweet_angel.png"]] CGColor]];
   [self.view.layer addSublayer:layer];
   
   CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
   NSArray *times = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:0.33], [NSNumber numberWithFloat:0.5], [NSNumber numberWithFloat:1.0], nil];
   [anim setKeyTimes:times];
   
-  NSArray *values = [NSArray arrayWithObjects:[NSValue valueWithCGPoint: CGPointMake(50., 50.)], [NSValue valueWithCGPoint: CGPointMake(50., 150.)], [NSValue valueWithCGPoint: CGPointMake(220., 150.)], [NSValue valueWithCGPoint: CGPointMake(220., 50.)], nil];
+  NSArray *values = [NSArray arrayWithObjects:[NSValue valueWithCGPoint: CGPointMake(0., 50.)], [NSValue valueWithCGPoint: CGPointMake(0., 350.)], [NSValue valueWithCGPoint: CGPointMake(320., 350.)], [NSValue valueWithCGPoint: CGPointMake(320., 50.)], nil];
   [anim setValues:values];
   [anim setDuration:6.0];
   [anim setRepeatCount:HUGE_VALF];
   [layer addAnimation:anim forKey:@"position"];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)stopAnimation{
+  
 }
 
 @end
